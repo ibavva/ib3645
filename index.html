@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>САХАР | Салон красоты во Владикавказе</title>
+    
+    <!-- Подключаем шрифты Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Подключаем библиотеку для анимаций AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- Базовые стили и переменные --- */
+        :root {
+            --primary-color: #d87093; /* Розовый цвет из макета */
+            --text-dark: #2c2c2c;
+            --text-light: #6a6a6a;
+            --bg-light: #fdf8f9;
+            --white: #ffffff;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- Шапка (Header) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo-text h1 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-book-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-book-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(216, 112, 147, 0.4);
+        }
+
+        /* --- Главный экран (Hero Section) --- */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 80px;
+            background-color: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(216, 112, 147, 0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            padding-right: 40px;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(48px, 5vw, 72px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-dark);
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-dark);
+            color: var(--white);
+        }
+
+        .hero-info {
+            display: flex;
+            gap: 40px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .hero-info div strong {
+            display: block;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transform: rotate(2deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image-wrapper:hover .hero-image {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .floating-card {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .floating-card-text h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .floating-card-text p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* --- Секция услуг (Services) --- */
+        .services {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 48px;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            display: flex;
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-card-img {
+            width: 45%;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-card-content h3 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .service-card-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .btn-service {
+            align-self: flex-start;
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-service:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- Контакты и Футер (Footer) --- */
+        footer {
+            background-color: var(--bg-light);
+            padding: 80px 0 40px;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p, .footer-col li {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .footer-col a {
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* --- Адаптивность (Responsive Design) --- */
+        @media (max-width: 992px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content {
+                padding-right: 0;
+                order: 2;
+            }
+            .hero-image-wrapper {
+                order: 1;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .hero-description {
+                margin: 0 auto 40px;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-info {
+                justify-content: center;
+            }
+            .floating-card {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -20px;
+            }
+            @keyframes float {
+                0% { transform: translateX(-50%) translateY(0px); }
+                50% { transform: translateX(-50%) translateY(-15px); }
+                100% { transform: translateX(-50%) translateY(0px); }
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none; /* Для простоты скрываем меню на мобильных */
+            }
+            .header-inner {
+                justify-content: center;
+            }
+            .logo {
+                margin-right: auto;
+            }
+            .btn-book-header {
+                margin-left: auto;
+            }
+            .hero-title {
+                font-size: 48px;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            .hero-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .service-card {
+                flex-direction: column;
+            }
+            .service-card-img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header data-aos="fade-down">
+        <div class="container header-inner">
+            <div class="logo">
+                <div class="logo-icon">С</div>
+                <div class="logo-text">
+                    <h1>САХАР</h1>
+                    <p>beauty studio</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#masters">Мастера</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-book-header">Записаться</a>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <main>
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-content" data-aos="fade-right" data-aos-delay="200">
+                    <p class="hero-subtitle">Салон красоты · Владикавказ</p>
+                    <h2 class="hero-title">Красота, к которой хочется <span>возвращаться</span></h2>
+                    <p class="hero-description">Маникюр, волосы, брови, ресницы и другие beauty-услуги в одном пространстве. Забота о деталях, уютная атмосфера и мастера, которым можно доверять.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn-primary">Записаться онлайн</a>
+                        <a href="#services" class="btn-secondary">Посмотреть услуги</a>
+                    </div>
+                    <div class="hero-info">
+                        <div>
+                            <strong>10:00–20:00</strong>
+                            ежедневно
+                        </div>
+                        <div>
+                            <strong>Бородинская, 5</strong>
+                            Владикавказ
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper" data-aos="fade-left" data-aos-delay="400">
+                    <!-- Используем качественное изображение с Unsplash -->
+                    <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Салон красоты Сахар" class="hero-image">
+                    <div class="floating-card">
+                        <div class="floating-card-icon">❤️</div>
+                        <div class="floating-card-text">
+                            <h4>САХАР</h4>
+                            <p>твоя beauty-точка</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция услуг -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Наши услуги</h2>
+                <div class="services-grid">
+                    
+                    <!-- Карточка услуги 1 -->
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1588510884947-923f7389a94a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Брови" class="service-card-img">
+                        <div class="service-card-content">
+                            <h3>Брови</h3>
+                            <p>Форма, цвет, ламинирование</p>
+                            <a href="#" class="btn-service">Наши работы</a>
+                        </div>
+                    </div>
+
+                    <!-- Карточка услуги 2 -->
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Волосы" class="service-card-img">
+                        <div class="service-card-content">
+                            <h3>Волосы</h3>
+                            <p>Стрижки, укладки, окрашивание</p>
+                            <a href="#" class="btn-service">Наши работы</a>
+                        </div>
+                    </div>
+
+                    <!-- Карточка услуги 3 -->
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Биозавивка" class="service-card-img">
+                        <div class="service-card-content">
+                            <h3>Биозавивка</h3>
+                            <p>Текстура и объём надолго</p>
+                            <a href="#" class="btn-service">Наши работы</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-col" data-aos="fade-up">
+                    <h4>Адрес</h4>
+                    <p>ул. Х.Б. Муталиева, 5<br>Центральный административный округ, Назрань<br>блок 3, этаж 2</p>
+                    <a href="#" style="color: var(--primary-color); font-weight: 500;">Маршрут</a>
+                </div>
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+                    <h4>Контакты</h4>
+                    <p><a href="tel:+7928726XXXX">+7 (928) 726-XX-XX</a></p>
+                    <p>Показать телефон</p>
+                </div>
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Время работы</h4>
+                    <p style="color: var(--primary-color); font-weight: 500;">Закрыто до завтра</p>
+                    <ul>
+                        <li>Понедельник: 09:00–19:00</li>
+                        <li>Вторник: 09:00–19:00</li>
+                        <li>Среда: 09:00–19:00</li>
+                        <li>Четверг: 09:00–19:00</li>
+                        <li>Пятница: 09:00–19:00</li>
+                        <li>Суббота: 09:00–19:00</li>
+                        <li>Воскресенье: 09:00–19:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 САХАР beauty studio. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключаем скрипт для анимаций AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Инициализация анимаций при прокрутке
+        AOS.init({
+            duration: 800, // Длительность анимации в миллисекундах
+            once: true,    // Анимация проигрывается только один раз
+            offset: 100    // Смещение в пикселях, когда начинать анимацию
+        });
+    </script>
+
+</body>
+</html>
